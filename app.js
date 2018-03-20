@@ -7,15 +7,6 @@ const db = mongojs('customerapp', ['users']);
 const ObjectId = mongojs.ObjectId;
 const app = express();
 
-/* Middleware example
-const logger = function(request, response, next) {
-    console.log('Logging...');
-    next();
-}
-
-app.use(logger);
-*/
-
 // View Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +28,7 @@ app.use((request, response, next) => {
 // Express Validator Middleware
 app.use(expressValidator());
 
+// Express routing
 app.get('/', function(request, response) {
     db.users.find((err, docs) => {
         response.render('index', {
